@@ -1,0 +1,10 @@
+create class human
+create class employee
+note
+describe it as carchteristic and actions
+==================================
+Bank Account System:
+
+Design classes for Bank, Account, and Customer.
+Establish relationships where a Bank has multiple Customers, and a Customer can have multiple Accounts.
+Develop methods for transferring money between accounts, checking balances, and generating account statements.	
