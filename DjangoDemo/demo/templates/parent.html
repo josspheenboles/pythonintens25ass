@@ -1,7 +1,11 @@
 {% load static %}
 <html>
     <head>
-        <title>Parent Page</title>
+        <title>
+            {%block title%}
+                Parent Page
+            {%endblock%}
+        </title>
         <!--css-->
         <link href="{% static '/css/style.css'%}" rel="stylesheet">
 
@@ -15,7 +19,33 @@
     <table>
         <tr>
             <td colspan="10">
-                <h1>header</h1>
+
+                <img src="{%static 'imgs/img.jpg'%}">
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+
+                <h1>Menu</h1>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+
+
+                {%block content%}
+                <h1>content</h1>
+                {%endblock%}
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+
+                <h1>Footer</h1>
+
             </td>
         </tr>
     </table>
