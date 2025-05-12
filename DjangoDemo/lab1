@@ -1,0 +1,20 @@
+A Simple Online Electronics Store
+create a Django application for "Gadget Galaxy," a small online store specializing in electronic gadgets.
+The application will focus on
+    managing product information,
+    categorizing products
+    and displaying them to users using a structured template hierarchy.
+Core Entities and Relationships:
+    Category: Products will be organized into categories (e.g., "Smartphones", "Laptops", "Audio Devices", "Wearables"). A category can have multiple products.
+Attributes: Name (e.g., "Smartphones"), Slug (for URL-friendly names, e.g., "smartphones"), Description (optional).
+    Product: Each product belongs to one Category.
+Attributes: Name (e.g., "SuperPhone X"), Description, Price (DecimalField), Stock (IntegerField), Image (ImageField, optional, or CharField for URL if not handling uploads), SKU (Stock Keeping Unit, CharField, unique), Date Added.
+Order and OrderItem: To represent customer orders. An Order would belong to a Customer and contain multiple OrderItems. An OrderItem would link to a Product and store quantity and price at the time of purchase.
+Customer / User: For simplicity in this assignment(optional)
+For this specific assignment, the primary focus will be on the Category and Product models and displaying them using template inheritance.
+The optional extensions can be mentioned as future enhancements.
+define models with various field types
+and a clear ForeignKey relationship (Product to Category).
+It naturally leads to creating a base layout for the store,
+a product listing page (perhaps filterable by category),
+and individual product detail pages, all using template inheritance.
