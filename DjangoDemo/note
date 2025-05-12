@@ -23,6 +23,11 @@ python manage.py startapp book
         or
         'book.apps.BookConfig'
 --models
+    imagefeild
+        --pip install Pillow
+--migrate
+    python manage.py makemigrations
+    python manage.py migrate
 
 
 
