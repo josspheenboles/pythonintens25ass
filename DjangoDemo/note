@@ -28,6 +28,8 @@ python manage.py startapp book
 --migrate
     python manage.py makemigrations
     python manage.py migrate
-
-
+--admin
+    --create super user
+        python manage.py createsuperuser
+    --register model
 
