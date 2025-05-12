@@ -15,4 +15,12 @@ django-admin startproject projectname
         'PASSWORD':'123',
         'HOST':'localhost',
         'PORT':'5432',
+--create app
+python manage.py startapp book
+--publish app
+        --go to projectname-->setting.py-->INSTALLED_APPS
+        'book'
+        or
+        'book.apps.BookConfig'
+
 
