@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from book.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('Book/',book_list,name='Blist'),
+    path('Book/New/',book_new,name='Bnew'),
+    path('Book/Update/<int:id>',book_update,name='Bupdate'),
+    path('Book/Delete/<int:id>',book_delete,name='Bdelete'),
 ]

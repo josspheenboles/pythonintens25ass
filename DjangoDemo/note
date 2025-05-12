@@ -32,4 +32,6 @@ python manage.py startapp book
     --create super user
         python manage.py createsuperuser
     --register model
+--urls
+
 
