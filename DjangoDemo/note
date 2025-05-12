@@ -2,3 +2,17 @@
 pip install django
 --create project
 django-admin startproject projectname
+--database configuration
+    create database called intendemo
+    --install postgres driver
+    pip install psycopg2-binary
+    or
+    pip install psycopg2
+    --go to projectname-->setting.py-->DATABASES
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'intendemo',
+        'USER':'postgres',
+        'PASSWORD':'123',
+        'HOST':'localhost',
+        'PORT':'5432',
+
