@@ -5,7 +5,8 @@ from django.http import HttpResponse
 def book_list(request):
     response=HttpResponse()
     response.write('<h1>Book List</h1>')
-    return response
+    # return response
+    return render(request,'parent.html')
 def book_new(request):
     return HttpResponse('<h1>New Book</h1>')
 def book_update(req,id):
