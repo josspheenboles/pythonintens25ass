@@ -13,6 +13,8 @@ def book_new(request):
         #validate data
         if request.POST['Bname'] and request.POST['Bpdate'] and  request.FILES['Bimage']
             and request.POST['bcat']:
+            #get selected Catagory Object
+            catagoryobj=Catagory2.get_catagory_by_id(request.POST['bcat'])
             #create object of book model
             pass
 
