@@ -23,7 +23,8 @@ class Book2(models.Model):
 
     @classmethod
     def getall(cls):
-        return cls.objects.all()
+        # return cls.objects.all()
+        return cls.objects.filter(status=True)
     @classmethod
     def get_by_id(cls,id):
         return cls.objects.get(pk=id)
