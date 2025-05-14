@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.shortcuts import redirect
 # Create your models here.
 class Catagory2(models.Model):
     id=models.AutoField(primary_key=True)
@@ -25,3 +25,7 @@ class Book2(models.Model):
                              publish_date=pdate,
                              image=image,
                              catagory=catagoryobj)
+        Book2.go_to_Book_List()
+    @staticmethod
+    def go_to_Book_List():
+        return redirect('Blist')

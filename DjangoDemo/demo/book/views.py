@@ -14,8 +14,6 @@ def book_new(request):
         if request.POST['Bname'] and request.POST['Bpdate'] and  request.FILES['Bimage'] and request.POST['bcat'] :
             #add new book clean code
             Book2.Add(request.POST['bname'],request.POST['Bpdate'],request.FILES['Bimage'],request.POST['bcat'])
-            return redirect('Blist')
-
         else:
             context['errormsg']='Invalid data'
     return render(request, 'book/new.html',context)
