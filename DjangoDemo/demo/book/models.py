@@ -24,6 +24,10 @@ class Book2(models.Model):
     def getall(cls):
         return cls.objects.all()
     @classmethod
+    def get_by_id(cls,id):
+        return cls.objects.get(pk=id)
+
+    @classmethod
     def Add(cls,name,pdate,image,catagoryid):
         catagoryobj = Catagory2.get_catagory_by_id(catagoryid)
         # create object of book model

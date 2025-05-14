@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def book_show(request,id):
-
+    context={'book':Book2.get_by_id(id)}
     return render(request,'book/details.html',context)
 def book_list(request):
     context={'books':Book2.getall()}
