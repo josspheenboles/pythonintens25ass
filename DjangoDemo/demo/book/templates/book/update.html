@@ -5,15 +5,20 @@
 {%block content%}
     <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <input type="text" placeholder="Book Name" name="Bname">
+        <input type="text" placeholder="Book Name" name="Bname" value="{{bookobj.name}}">
         </br>
-        <input type="text" placeholder="Publish Date" name="Bpdate">
+        <input type="text" placeholder="Publish Date" name="Bpdate" value="{{bookobj.publish_date}}">
         </br>
         <input type="file" placeholder="Publish Date" name="Bimage">
+        <img src="/media/{{bookobj.image}}" width="50%" height="50%">
         </br>
         <select name="bcat">
             {%for catagory in catagories%}
-            <option value="{{catagory.id}}">{{catagory.name}}</option>
+                {%if catagory.id == bookobj.catagory.id %}
+                    <option selected value="{{catagory.id}}">{{catagory.name}}</option>
+                {%else%}
+                    <option  value="{{catagory.id}}">{{catagory.name}}</option>
+                {%endif%}
             {%endfor%}
 
         </select>

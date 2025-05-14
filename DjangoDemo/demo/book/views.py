@@ -21,7 +21,8 @@ def book_new(request):
             context['errormsg']='Invalid data'
     return render(request, 'book/new.html',context)
 def book_update(req,id):
-    context={}
+    context={'bookobj':Book2.get_by_id(id),
+             'catagories':Catagory2.getall()}
     return render(req,'book/update.html',context)
 def book_delete(req,id):
     return HttpResponse(f'<h1>Book deleted {id}</h1>')
