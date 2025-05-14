@@ -12,5 +12,18 @@
             <th>Image</th>
             <th>Actions</th>
         </tr>
+        {%for book in books%}
+            <tr>
+                <td>{{book.name}}</td>
+                <td>{{book.publish_date}}</td>
+                <td>{{book.name}}</td>
+                <td>{{book.catagory}}</td>
+                <td>
+                    <a href="">Update</a>
+                    <a href="">Delete</a>
+                    <a href="">Details</a>
+                </td>
+            </tr>
+        {%endfor%}
     </table>
 {%endblock%}
