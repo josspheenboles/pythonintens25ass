@@ -17,3 +17,11 @@ class Book2(models.Model):
     image=models.ImageField(upload_to='books/imgs',blank=True,null=True)
     catagory=models.ForeignKey(to=Catagory2,on_delete=models.CASCADE)
 
+    @classmethod
+    def Add(cls,name,pdate,image,catagoryid):
+        catagoryobj = Catagory2.get_catagory_by_id(catagoryid)
+        # create object of book model
+        Book2.objects.create(name=name,
+                             publish_date=pdate,
+                             image=image,
+                             catagory=catagoryobj)
