@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Book2,Catagory2
 from django.http import HttpResponse
 # Create your views here.
@@ -20,7 +20,7 @@ def book_new(request):
                                  image=request.FILES['Bimage'],
                                  catagory=request.POST['bcat'])
 
-
+            return redirect('Blist')
 
         else:
             context['errormsg']='Invalid data'
