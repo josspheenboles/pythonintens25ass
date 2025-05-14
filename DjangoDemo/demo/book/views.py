@@ -26,15 +26,20 @@ def book_update(req,id):
     context={'bookobj':Book2.get_by_id(id),
              'catagories':Catagory2.getall()}
     if req.method=='POST':
-        # #update
-        Book2.objects.filter(pk=id).update(
-            name=req.POST['Bname'],
-            publish_date=req.POST['Bpdate'],
-            # image=req.FILES['Bimage'],
-            catagory=Catagory2.get_catagory_by_id(req.POST['bcat'])
-        )
+        # validate data
+        if req.POST['Bname'] and req.POST['Bpdate'] and req.POST['bcat']:
 
-        return Book2.go_to_Book_List()
+            # #update
+            Book2.objects.filter(pk=id).update(
+                name=req.POST['Bname'],
+                publish_date=req.POST['Bpdate'],
+                # image=req.FILES['Bimage'],
+                catagory=Catagory2.get_catagory_by_id(req.POST['bcat'])
+            )
+
+            return Book2.go_to_Book_List()
+        else:
+            context['errormsg']='Invalid data'
 
     return render(req,'book/update.html',context)
 
