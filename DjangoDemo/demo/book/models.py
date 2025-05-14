@@ -49,6 +49,12 @@ class Book2(models.Model):
     def harddel(cls,id):
         return cls.objects.filter(pk=id).delete()
 
+    @classmethod
+    def softdelete(cls,id):
+        Book2.objects.filter(pk=id).update(
+            status=False
+        )
+
     @staticmethod
     def go_to_Book_List():
         return  redirect('Blist')

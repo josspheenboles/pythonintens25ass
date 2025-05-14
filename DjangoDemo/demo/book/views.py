@@ -39,5 +39,6 @@ def book_update(req,id):
     return render(req,'book/update.html',context)
 
 def book_delete(req,id):
-    Book2.harddel(id)
+    # Book2.harddel(id)
+    Book2.softdelete(id)
     return Book2.go_to_Book_List()
