@@ -25,7 +25,7 @@ class Book2(models.Model):
                              publish_date=pdate,
                              image=image,
                              catagory=catagoryobj)
-        Book2.go_to_Book_List()
+
     @staticmethod
     def go_to_Book_List():
-        return redirect('Blist')
+        return  redirect('Blist')

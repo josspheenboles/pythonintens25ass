@@ -13,7 +13,8 @@ def book_new(request):
         #validate data
         if request.POST['Bname'] and request.POST['Bpdate'] and  request.FILES['Bimage'] and request.POST['bcat'] :
             #add new book clean code
-            Book2.Add(request.POST['bname'],request.POST['Bpdate'],request.FILES['Bimage'],request.POST['bcat'])
+            Book2.Add(request.POST['Bname'],request.POST['Bpdate'],request.FILES['Bimage'],request.POST['bcat'])
+            return Book2.go_to_Book_List()
         else:
             context['errormsg']='Invalid data'
     return render(request, 'book/new.html',context)
