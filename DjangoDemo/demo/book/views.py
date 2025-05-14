@@ -3,8 +3,8 @@ from .models import Book2,Catagory2
 from django.http import HttpResponse
 # Create your views here.
 def book_list(request):
-
-    return render(request,'book/list.html')
+    context={'books':Book2.getall()}
+    return render(request,'book/list.html',context)
 def book_new(request):
     context={'catagories':Catagory2.getall()}
     if(request.method=='POST'):

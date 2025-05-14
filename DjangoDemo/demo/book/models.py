@@ -21,6 +21,9 @@ class Book2(models.Model):
     catagory=models.ForeignKey(to=Catagory2,on_delete=models.CASCADE)
 
     @classmethod
+    def getall(cls):
+        return cls.objects.all()
+    @classmethod
     def Add(cls,name,pdate,image,catagoryid):
         catagoryobj = Catagory2.get_catagory_by_id(catagoryid)
         # create object of book model
