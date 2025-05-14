@@ -19,6 +19,7 @@ class Book2(models.Model):
     update_date=models.DateField(auto_now=True)
     image=models.ImageField(upload_to='books/imgs',blank=True,null=True)
     catagory=models.ForeignKey(to=Catagory2,on_delete=models.CASCADE)
+    status=models.BooleanField(default=True)
 
     @classmethod
     def getall(cls):
