@@ -9,7 +9,10 @@ def book_new(request):
     catagories=Catagory2.objects.all()
     context={}
     context['catagories']=catagories
-    # return HttpResponse('<h1>New Book</h1>')
+    if(request.method=='POST'):
+        #validate data
+
+        #create object of book model
     return render(request, 'book/new.html',context)
 def book_update(req,id):
     return HttpResponse(f'<h1>Book updated {id}</h1>')
