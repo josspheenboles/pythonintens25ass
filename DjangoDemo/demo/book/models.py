@@ -1,5 +1,5 @@
 from django.db import models
-from django.shortcuts import redirect
+from django.shortcuts import redirect,get_object_or_404
 # Create your models here.
 class Catagory2(models.Model):
     id=models.AutoField(primary_key=True)
@@ -44,6 +44,9 @@ class Book2(models.Model):
             # image=req.FILES['Bimage'],
             catagory=Catagory2.get_catagory_by_id(id)
         )
+    @classmethod
+    def harddel(cls,id):
+        return cls.objects.filter(pk=id).delete()
 
     @staticmethod
     def go_to_Book_List():

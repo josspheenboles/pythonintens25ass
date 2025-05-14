@@ -39,4 +39,5 @@ def book_update(req,id):
     return render(req,'book/update.html',context)
 
 def book_delete(req,id):
-    return HttpResponse(f'<h1>Book deleted {id}</h1>')
+    Book2.harddel(id)
+    return Book2.go_to_Book_List()
