@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Book2,Catagory2
 from django.http import HttpResponse
+import os
+from django.conf import settings
 # Create your views here.
 
 def book_show(request,id):
@@ -23,6 +25,18 @@ def book_new(request):
 def book_update(req,id):
     context={'bookobj':Book2.get_by_id(id),
              'catagories':Catagory2.getall()}
+    if req.method=='POST':
+        # #update
+        Book2.objects.filter(pk=id).update(
+            name=req.POST['Bname'],
+            publish_date=req.POST['Bpdate'],
+            # image=req.FILES['Bimage'],
+            catagory=Catagory2.get_catagory_by_id(req.POST['bcat'])
+        )
+
+        return Book2.go_to_Book_List()
+
     return render(req,'book/update.html',context)
+
 def book_delete(req,id):
     return HttpResponse(f'<h1>Book deleted {id}</h1>')

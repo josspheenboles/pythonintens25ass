@@ -7,7 +7,7 @@
         {%csrf_token%}
         <input type="text" placeholder="Book Name" name="Bname" value="{{bookobj.name}}">
         </br>
-        <input type="text" placeholder="Publish Date" name="Bpdate" value="{{bookobj.publish_date}}">
+        <input type="text" placeholder="Publish Date" name="Bpdate" value="{{bookobj.publish_date|date:'Y-m-d'}}">
         </br>
         <input type="file" placeholder="Publish Date" name="Bimage">
         <img src="/media/{{bookobj.image}}" width="50%" height="50%">
