@@ -3,22 +3,21 @@
     Book-Info
 {%endblock%}
 {%block content%}
-    <form method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        <input type="text" placeholder="Book Name" name="Bname">
-        </br>
-        <input type="text" placeholder="Publish Date" name="Bpdate">
-        </br>
-        <input type="file" placeholder="Publish Date" name="Bimage">
-        </br>
-        <select name="bcat">
-            {%for catagory in catagories%}
-            <option value="{{catagory.id}}">{{catagory.name}}</option>
-            {%endfor%}
+   <table>
+       <tr>
+           <td colspan="3">
+               Name:{{book.name}}
+               </br>
+               Publish Date:{{book.publish_date}}
+               </br>
+               Modified Date:{{book.update_date}}
+               </br>
+               catagory:{{book.catagory.name}}
+           </td>
+           <td colspan="1">
+               <img src="/media/{{book.image}}" width="70%">
+           </td>
+       </tr>
 
-        </select>
-        </br>
-        <input type="submit"  value="Add">
-        </br>
-    </form>
+   </table>
 {%endblock%}
