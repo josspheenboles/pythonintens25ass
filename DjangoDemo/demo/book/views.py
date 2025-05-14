@@ -6,9 +6,7 @@ def book_list(request):
 
     return render(request,'book/list.html')
 def book_new(request):
-    catagories=Catagory2.objects.all()
-    context={}
-    context['catagories']=catagories
+    context={'catagories':Catagory2.getall()}
     if(request.method=='POST'):
         #validate data
         if request.POST['Bname'] and request.POST['Bpdate'] and  request.FILES['Bimage'] and request.POST['bcat'] :

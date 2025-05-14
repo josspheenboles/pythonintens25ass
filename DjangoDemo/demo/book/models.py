@@ -9,6 +9,9 @@ class Catagory2(models.Model):
     @classmethod
     def get_catagory_by_id(cls,id):
         return cls.objects.get(pk=id)
+    @classmethod
+    def getall(cls):
+        return Catagory2.objects.all()
 class Book2(models.Model):
     id = models.AutoField(primary_key=True)
     name=models.CharField(max_length=100,null=False)
