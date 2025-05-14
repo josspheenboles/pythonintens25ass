@@ -35,6 +35,15 @@ class Book2(models.Model):
                              publish_date=pdate,
                              image=image,
                              catagory=catagoryobj)
+    @classmethod
+    def update(cls,id,name,publish_date,catagory):
+        # #update
+        Book2.objects.filter(pk=id).update(
+            name=name,
+            publish_date=publish_date,
+            # image=req.FILES['Bimage'],
+            catagory=Catagory2.get_catagory_by_id(id)
+        )
 
     @staticmethod
     def go_to_Book_List():

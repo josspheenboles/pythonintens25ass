@@ -30,12 +30,7 @@ def book_update(req,id):
         if req.POST['Bname'] and req.POST['Bpdate'] and req.POST['bcat']:
 
             # #update
-            Book2.objects.filter(pk=id).update(
-                name=req.POST['Bname'],
-                publish_date=req.POST['Bpdate'],
-                # image=req.FILES['Bimage'],
-                catagory=Catagory2.get_catagory_by_id(req.POST['bcat'])
-            )
+            Book2.update(id,req.POST['Bname'],req.POST['Bpdate'])
 
             return Book2.go_to_Book_List()
         else:
