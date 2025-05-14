@@ -11,8 +11,14 @@ def book_new(request):
     context['catagories']=catagories
     if(request.method=='POST'):
         #validate data
+        if request.POST['Bname'] and request.POST['Bpdate'] and  request.FILES['Bimage']
+            and request.POST['bcat']:
+            #create object of book model
+            pass
 
-        #create object of book model
+
+        else:
+            context['errormsg']='Invalid data'
     return render(request, 'book/new.html',context)
 def book_update(req,id):
     return HttpResponse(f'<h1>Book updated {id}</h1>')
