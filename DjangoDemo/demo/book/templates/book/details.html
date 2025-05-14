@@ -1,0 +1,24 @@
+{%extends 'parent.html'%}
+{%block title%}
+    Book-Info
+{%endblock%}
+{%block content%}
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <input type="text" placeholder="Book Name" name="Bname">
+        </br>
+        <input type="text" placeholder="Publish Date" name="Bpdate">
+        </br>
+        <input type="file" placeholder="Publish Date" name="Bimage">
+        </br>
+        <select name="bcat">
+            {%for catagory in catagories%}
+            <option value="{{catagory.id}}">{{catagory.name}}</option>
+            {%endfor%}
+
+        </select>
+        </br>
+        <input type="submit"  value="Add">
+        </br>
+    </form>
+{%endblock%}
