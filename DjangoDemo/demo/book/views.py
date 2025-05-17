@@ -8,9 +8,19 @@ from django.views import View
 # Create your views here.
 class Book_update(View):
     def get(self,request):
-        pass
+        context = {'form': BookFormModel(instance=Book2.get_by_id(id))}
+        return render(request, 'book/updateform.html', context)
     def post(self,request):
-        pass
+        context={}
+        form = BookFormModel(data=request.POST, files=request.FILES, instance=Book2.get_by_id(id))
+        if form.is_bound and form.is_valid():
+            form.save()
+            return redirect('Blist')
+        else:
+            context['form'] = form
+            context['msg'] = form.errors
+
+        return render(request, 'book/updateform.html', context)
 
 class Book_New(View):
     context ={}
