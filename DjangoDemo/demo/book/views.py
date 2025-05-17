@@ -6,6 +6,12 @@ import os
 from django.conf import settings
 from django.views import View
 # Create your views here.
+class Book_update(View):
+    def get(self,request):
+        pass
+    def post(self,request):
+        pass
+
 class Book_New(View):
     context ={}
     def get(self,request):
