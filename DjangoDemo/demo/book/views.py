@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Book2,Catagory2
 from django.http import HttpResponse
-from .forms import BookForm
+from .forms import BookForm,BookFormModel
 import os
 from django.conf import settings
 # Create your views here.
@@ -13,6 +13,18 @@ def book_list(request):
     context={'books':Book2.getall()}
     return render(request,'book/list.html',context)
 
+def book_newformmodel(request):
+    context={'form':BookFormModel}
+    if(request.method=='POST'):
+        form=BookFormModel(data=request.POST,files=request.FILES)
+        if form.is_bound and form.is_valid():
+            form.save()
+            return redirect('Blist')
+        else:
+            context['msg']=form.errors
+            context['form']=form
+
+    return render(request, 'book/newform.html', context)
 def book_newform(request):
     context={'form':BookForm()}
     if request.method=='POST':

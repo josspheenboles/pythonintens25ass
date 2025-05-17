@@ -1,6 +1,17 @@
 from django import forms
 from django.core.validators import FileExtensionValidator
-from .models import Catagory2
+from .models import *
+
+class BookFormModel(forms.ModelForm):
+    class Meta:
+        model=Book2
+        fields='__all__'
+        exculde=['status','Name']
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.fields['image'].widget.attrs.update({'accept': 'image/*'})
+        self.fields['publish_date'].widget=forms.DateInput(attrs={'type':'date'})
+
 
 
 class BookForm(forms.Form):
