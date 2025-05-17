@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Book2,Catagory2
 from django.http import HttpResponse
+from .forms import BookForm
 import os
 from django.conf import settings
 # Create your views here.
@@ -11,6 +12,11 @@ def book_show(request,id):
 def book_list(request):
     context={'books':Book2.getall()}
     return render(request,'book/list.html',context)
+
+def book_newform(request):
+    context={'form':BookForm()}
+    return render(request, 'book/newform.html', context)
+
 def book_new(request):
     context={'catagories':Catagory2.getall()}
     if(request.method=='POST'):
@@ -37,7 +43,6 @@ def book_update(req,id):
             context['errormsg']='Invalid data'
 
     return render(req,'book/update.html',context)
-
 def book_delete(req,id):
     # Book2.harddel(id)
     Book2.softdelete(id)
