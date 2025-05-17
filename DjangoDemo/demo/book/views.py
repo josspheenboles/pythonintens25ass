@@ -15,6 +15,16 @@ def book_list(request):
 
 def book_newform(request):
     context={'form':BookForm()}
+    if request.method=='POST':
+        form=BookForm(data=request.POST,files=request.FILES)
+        if(form.is_bound and form.is_valid()):
+            Book2.Add(form.cleaned_data['name'],
+                      pdate=form.cleaned_data['publishdate'],
+                      image=form.cleaned_data   ['image'],
+                      catagoryid=form.cleaned_data['catagory'])
+            return redirect('Blist')
+        else:
+            context['msg']=form.errors
     return render(request, 'book/newform.html', context)
 
 def book_new(request):
