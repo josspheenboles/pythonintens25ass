@@ -38,11 +38,11 @@ def book_updateform(request,id):
     if request.method=='POST':
         form=BookForm(data=request.POST,files=request.FILES,initial=initail_data)
         if form.is_bound and form.is_valid():
-            Book2.update(id,form.cleaned_data['name'],
-                         form.cleaned_data['publishdate'],
-                         form.files['image'],
-                         form.cleaned_data['catagory']
-                         )
+            oldbookobj.name=form.cleaned_data['name']
+            oldbookobj.publish_date=form.cleaned_data['publishdate']
+            oldbookobj.image=  form.cleaned_data['image']
+            oldbookobj.catagory=Catagory2.get_catagory_by_id(  form.cleaned_data['catagory'])
+            oldbookobj.save()
             return redirect('Blist')
         else:
             context['msg']=form.errors

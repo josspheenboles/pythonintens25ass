@@ -1,9 +1,11 @@
 from django.db import models
 from django.shortcuts import redirect,get_object_or_404
+import os
 # Create your models here.
 class Catagory2(models.Model):
     id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=100,null=False)
+
 
     #get catagory by id
     @classmethod
@@ -39,7 +41,9 @@ class Book2(models.Model):
                              catagory=catagoryobj)
     @classmethod
     def update(cls,id,name,publish_date,image,catagoryid):
+
         # #update
+
         Book2.objects.filter(pk=id).update(
             name=name,
             publish_date=publish_date,
