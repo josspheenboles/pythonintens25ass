@@ -38,13 +38,13 @@ class Book2(models.Model):
                              image=image,
                              catagory=catagoryobj)
     @classmethod
-    def update(cls,id,name,publish_date,catagory):
+    def update(cls,id,name,publish_date,image,catagoryid):
         # #update
         Book2.objects.filter(pk=id).update(
             name=name,
             publish_date=publish_date,
-            # image=req.FILES['Bimage'],
-            catagory=Catagory2.get_catagory_by_id(id)
+            image=image,
+            catagory=Catagory2.get_catagory_by_id(catagoryid)
         )
     @classmethod
     def harddel(cls,id):

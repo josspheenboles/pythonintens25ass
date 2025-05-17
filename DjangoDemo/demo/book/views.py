@@ -26,7 +26,27 @@ def book_newform(request):
         else:
             context['msg']=form.errors
     return render(request, 'book/newform.html', context)
-
+def book_updateform(request,id):
+    oldbookobj=Book2.get_by_id(id)
+    initail_data={
+        'name': oldbookobj.name,
+        'publishdate': oldbookobj.publish_date,
+        'image':oldbookobj.image,
+        'catagory':oldbookobj.catagory.id
+    }
+    context={'form':BookForm(initial=initail_data)}
+    if request.method=='POST':
+        form=BookForm(data=request.POST,files=request.FILES,initial=initail_data)
+        if form.is_bound and form.is_valid():
+            Book2.update(id,form.cleaned_data['name'],
+                         form.cleaned_data['publishdate'],
+                         form.files['image'],
+                         form.cleaned_data['catagory']
+                         )
+            return redirect('Blist')
+        else:
+            context['msg']=form.errors
+    return render(request, 'book/updateform.html', context)
 def book_new(request):
     context={'catagories':Catagory2.getall()}
     if(request.method=='POST'):
