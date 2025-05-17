@@ -4,7 +4,25 @@ from django.http import HttpResponse
 from .forms import BookForm,BookFormModel
 import os
 from django.conf import settings
+from django.views import View
 # Create your views here.
+class Book_New(View):
+    context ={}
+    def get(self,request):
+        Book_New.context = {'form': BookForm()}
+        return render(request, 'book/newform.html', Book_New.context)
+    def post(self,request):
+
+        form = BookForm(data=request.POST, files=request.FILES)
+        if (form.is_bound and form.is_valid()):
+            Book2.Add(form.cleaned_data['name'],
+                      pdate=form.cleaned_data['publishdate'],
+                      image=form.cleaned_data['image'],
+                      catagoryid=form.cleaned_data['catagory'])
+            return redirect('Blist')
+        else:
+            Book_New.context['msg'] = form.errors
+        return render(request, 'book/newform.html', Book_New.context)
 
 def book_show(request,id):
     context={'book':Book2.get_by_id(id)}
