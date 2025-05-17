@@ -7,10 +7,10 @@ from django.conf import settings
 from django.views import View
 # Create your views here.
 class Book_update(View):
-    def get(self,request):
+    def get(self,request,id):
         context = {'form': BookFormModel(instance=Book2.get_by_id(id))}
         return render(request, 'book/updateform.html', context)
-    def post(self,request):
+    def post(self,request,id):
         context={}
         form = BookFormModel(data=request.POST, files=request.FILES, instance=Book2.get_by_id(id))
         if form.is_bound and form.is_valid():
