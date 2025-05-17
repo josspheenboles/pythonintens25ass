@@ -7,6 +7,7 @@ path('',book_list,name='Blist'),
     path('NewFormModel/',book_newformmodel,name='Bnewformmodel'),
     path('Update/<int:id>',book_update,name='Bupdate'),
     path('UpdateForm/<int:id>',book_updateform,name='Bupdateform'),
+    path('UpdateFormModel/<int:id>',book_updateformmodel,name='Bupdateformmodel'),
     path('Delete/<int:id>',book_delete,name='Bdelete'),
     path('<int:id>',book_show,name='Bshow'),
 ]

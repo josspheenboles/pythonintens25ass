@@ -59,6 +59,18 @@ def book_updateform(request,id):
         else:
             context['msg']=form.errors
     return render(request, 'book/updateform.html', context)
+def book_updateformmodel(request,id):
+    context={'form':BookFormModel(instance=Book2.get_by_id(id))}
+    if request.method=='POST':
+        form=BookFormModel(data=request.POST,files=request.FILES,instance=Book2.get_by_id(id))
+        if form.is_bound and form.is_valid():
+            form.save()
+            return redirect('Blist')
+        else:
+            context['form']=form
+            context['msg']=form.errors
+
+    return render(request, 'book/updateform.html', context)
 def book_new(request):
     context={'catagories':Catagory2.getall()}
     if(request.method=='POST'):
