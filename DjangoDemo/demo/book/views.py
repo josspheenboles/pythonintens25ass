@@ -6,6 +6,12 @@ import os
 from django.conf import settings
 from django.views import View
 # Create your views here.
+
+class book_list_class(View):
+    def get(self,request):
+        context = {'books': Book2.getall()}
+        return render(request, 'book/list.html', context)
+
 class book_deleteclass(View):
     def get(self,request,id):
         Book2.softdelete(id)
