@@ -11,5 +11,6 @@ path('',book_list,name='Blist'),
     path('UpdateForm/<int:id>',book_updateform,name='Bupdateform'),
     path('UpdateFormModel/<int:id>',book_updateformmodel,name='Bupdateformmodel'),
     path('Delete/<int:id>',book_delete,name='Bdelete'),
+    path('DeleteClass/<int:id>',book_deleteclass.as_view(),name='Bdeletec'),
     path('<int:id>',book_show,name='Bshow'),
 ]

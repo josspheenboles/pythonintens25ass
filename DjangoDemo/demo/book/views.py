@@ -6,6 +6,10 @@ import os
 from django.conf import settings
 from django.views import View
 # Create your views here.
+class book_deleteclass(View):
+    def get(self,request,id):
+        Book2.softdelete(id)
+        return Book2.go_to_Book_List()
 class Book_update(View):
     def get(self,request,id):
         context = {'form': BookFormModel(instance=Book2.get_by_id(id))}
