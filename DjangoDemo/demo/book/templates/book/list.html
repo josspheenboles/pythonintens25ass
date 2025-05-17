@@ -20,9 +20,14 @@
                     <img src="/media/{{book.image}}" width="50" height="50%"></td>
                 <td>{{book.catagory.name}}</td>
                 <td>
-                    <a href="{%url 'Bupdate' book.id%}">Update</a>
-                    <a href="{%url 'Bdelete' book.id%}">Delete</a>
+                    <a href="{%url 'Bupdate' book.id%}">Update function based</a>
+                    <a href="{%url 'Bupdateform' book.id%}">update function based &form</a>
+                    <a href="{%url 'Bupdateformmodel' book.id%}">update function based & model form</a>
+                    <a href="{%url 'Bupdatec' book.id%}">update class based</a>
+                    <a href="{%url 'Bdelete' book.id%}">Delete function based</a>
+                    <a href="{%url 'Bdeletec' book.id%}">Delete class based</a>
                     <a href="{%url 'Bshow' book.id%}">Details</a>
+
                 </td>
             </tr>
         {%endfor%}
