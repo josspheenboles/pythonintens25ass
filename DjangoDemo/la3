@@ -1,0 +1,4 @@
+Product-->insert using model form
+Product-->update using form
+Product-->list using class based view
+Product-->delete using class based view
