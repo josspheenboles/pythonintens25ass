@@ -131,7 +131,7 @@ MEDIA_URL='media/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# AUTH_USER_MODEL='account.CustomUser'
+AUTH_USER_MODEL='account.CustomUser'
 ###Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -139,4 +139,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'xxx@gmail.com'
 EMAIL_HOST_PASSWORD = 'xxx'
-AUTH_USER_MODEL = 'myaccount.CustomUser'
+
