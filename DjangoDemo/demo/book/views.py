@@ -6,12 +6,26 @@ import os
 from django.conf import settings
 from django.views import View
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView,UpdateView
+
+class Book_updateG(UpdateView):
+    model = Book2
+    template_name = 'book/updateform.html'
+    context_object_name = 'bookobj'
+    queryset = Book2.getall()
+    fields = '__all__'
+    # def get_form(self, form_class=None):
+    #     form = super().get_form(form_class)
+    #     # Filter the author queryset
+    #     form.fields['catagory'].queryset =Catagory2.objects.all()
+    #     return form
 
 class Book_newG(ListView):
+    model = Book2
     template_name = 'book/list.html'
     context_object_name = 'books'
     queryset = Book2.getall()
+
 # Create your views here.
 
 class book_list_class(View):
