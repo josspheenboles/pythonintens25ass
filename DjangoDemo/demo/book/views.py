@@ -6,6 +6,12 @@ import os
 from django.conf import settings
 from django.views import View
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+
+class Book_newG(ListView):
+    template_name = 'book/list.html'
+    context_object_name = 'books'
+    queryset = Book2.getall()
 # Create your views here.
 
 class book_list_class(View):
