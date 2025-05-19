@@ -11,10 +11,11 @@ class LoginView(View):
 
     def post(self, request):
         form = LoginForm(data=request.POST)
-        if (form.is_bound and form.is_valid()):
-            obj = authenticate(request, form.cleaned_data['username'], form.cleaned_data['password'])
+
+        if (form.is_bound):
+            obj = authenticate( request,username=request.POST['username'],password= request.POST['password'])
             if (obj is not None):
-                login(request, form.cleaned_data['username'], form.cleaned_data['password'])
+                login(request,obj)
                 return redirect('Blist')
             else:
                 return render(request, 'registration/login.html', {'form': form,'msg':'invlaid username & pass'})
