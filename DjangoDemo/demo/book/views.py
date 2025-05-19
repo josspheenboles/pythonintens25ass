@@ -6,7 +6,9 @@ import os
 from django.conf import settings
 from django.views import View
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView,UpdateView
+from django.views.generic import ListView,UpdateView,CreateView
+
+
 
 class Book_updateG(UpdateView):
     model = Book2
@@ -20,9 +22,11 @@ class Book_updateG(UpdateView):
     #     form.fields['catagory'].queryset =Catagory2.objects.all()
     #     return form
 
-class Book_newG(ListView):
+class Book_newG(CreateView):
     model = Book2
-    template_name = 'book/list.html'
+    fields = '__all__'
+    exclude=['status']
+    template_name = 'book/newform.html'
     context_object_name = 'books'
     queryset = Book2.getall()
 
