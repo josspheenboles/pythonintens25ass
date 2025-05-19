@@ -21,7 +21,10 @@ class Book_updateG(UpdateView):
     #     # Filter the author queryset
     #     form.fields['catagory'].queryset =Catagory2.objects.all()
     #     return form
-
+class Book_list_classG(ListView):
+    template_name = 'book/list.html'
+    model = Book2
+    context_object_name = 'books'
 class Book_newG(CreateView):
     model = Book2
     fields = '__all__'
