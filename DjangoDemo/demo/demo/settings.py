@@ -140,3 +140,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'xxx@gmail.com'
 EMAIL_HOST_PASSWORD = 'xxx'
 
+#####default urls
+LOGIN_REDIRECT_URL = 'Book'
+LOGOUT_REDIRECT_URL = 'login'
