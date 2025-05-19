@@ -16,5 +16,6 @@ urlpatterns=[
     path('UpdateFormModel/<int:id>',book_updateformmodel,name='Bupdateformmodel'),
     path('Delete/<int:id>',book_delete,name='Bdelete'),
     path('DeleteClass/<int:id>',book_deleteclass.as_view(),name='Bdeletec'),
+    path('DeleteClassG/<int:pk>',Book_deleteclassG.as_view(),name='BdeletecG'),
     path('<int:id>',book_show,name='Bshow'),
 ]

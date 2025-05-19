@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
 from .models import Book2,Catagory2
 from django.http import HttpResponse
 from .forms import BookForm,BookFormModel
@@ -6,16 +7,19 @@ import os
 from django.conf import settings
 from django.views import View
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView,UpdateView,CreateView
+from django.views.generic import ListView,UpdateView,CreateView,DeleteView
 
 
-
+class Book_deleteclassG(DeleteView):
+    model = Book2
+    success_url =reverse_lazy('BlistcG')
 class Book_updateG(UpdateView):
     model = Book2
     template_name = 'book/updateform.html'
     context_object_name = 'bookobj'
     queryset = Book2.getall()
     fields = '__all__'
+    success_url = reverse_lazy('BlistcG')
     # def get_form(self, form_class=None):
     #     form = super().get_form(form_class)
     #     # Filter the author queryset
@@ -27,6 +31,7 @@ class Book_list_classG(ListView):
     context_object_name = 'books'
 class Book_newG(CreateView):
     model = Book2
+    success_url = reverse_lazy('BlistcG')
     fields = '__all__'
     exclude=['status']
     template_name = 'book/newform.html'
