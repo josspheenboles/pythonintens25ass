@@ -5,6 +5,7 @@ from .forms import BookForm,BookFormModel
 import os
 from django.conf import settings
 from django.views import View
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class book_list_class(View):
@@ -53,6 +54,7 @@ class Book_New(View):
 def book_show(request,id):
     context={'book':Book2.get_by_id(id)}
     return render(request,'book/details.html',context)
+@login_required()
 def book_list(request):
     context={'books':Book2.getall()}
     return render(request,'book/list.html',context)
