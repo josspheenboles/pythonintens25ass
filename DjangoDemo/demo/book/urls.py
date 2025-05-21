@@ -4,6 +4,7 @@ from .api.views import *
 urlpatterns=[
     #api function based
     path('API/',getall,name='apiall'),
+    path('API/<int:id>',getbyid,name='getbyid'),
 
 
 
