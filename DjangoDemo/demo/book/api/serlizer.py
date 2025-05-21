@@ -28,7 +28,7 @@ class BookSerlizer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         if 'category_id' in validated_data:
-            category_id = validated_data.pop('category_id')[0]
+            category_id = validated_data.pop('category_id')
 
             try:
                 category = Catagory2.objects.get(id=category_id)

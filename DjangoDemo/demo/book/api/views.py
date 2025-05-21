@@ -8,7 +8,34 @@ from ..models import *
 from rest_framework.views import  APIView
 from rest_framework.generics import CreateAPIView,RetrieveUpdateDestroyAPIView,ListAPIView
 from rest_framework.pagination import  PageNumberPagination
+from rest_framework.exceptions import ValidationError
 
+class BookRUDAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Book2.getall()
+    serializer_class = BookSerlizer
+    lookup_field = 'pk'
+
+    def perform_update(self, serializer):
+        """Handle category during update"""
+        category_id = self.request.data['category_id']
+        if category_id:
+            try:
+                category = Catagory2.get_catagory_by_id(id=category_id)
+                serializer.save(category=category)
+                return
+            except (Catagory2.DoesNotExist, ValueError):
+                raise ValidationError({"category": "Invalid category ID"})
+
+        serializer.save()
+
+    def destroy(self, request, *args, **kwargs):
+        """Custom delete response"""
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(
+            {"detail": "Book deleted successfully"},
+            status=status.HTTP_204_NO_CONTENT
+        )
 
 
 class BookCreateAPIView(CreateAPIView):
