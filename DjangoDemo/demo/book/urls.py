@@ -7,6 +7,7 @@ urlpatterns=[
     path('API/<int:id>',getbyid,name='getbyid'),
     # class Based
     path('CAPI/',BookClass.as_view(),name='BookClass'),
+    path('CAPI/<int:id>',BookClass2.as_view(),name='BookClassbyid'),
 
 
 

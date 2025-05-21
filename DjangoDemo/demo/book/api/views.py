@@ -7,6 +7,16 @@ from .serlizer import *
 from ..models import *
 from rest_framework.views import  APIView
 
+
+class BookClass2(APIView):
+    def get(self,request, id):
+        book = Book2.get_by_id(id)
+        BookSerlized = BookSerlizer(book)
+        return Response(
+            data=BookSerlized.data,
+            status=status.HTTP_200_OK
+        )
+
 class BookClass(APIView):
     def get(self,request):
         books = Book2.getall()
@@ -30,6 +40,7 @@ class BookClass(APIView):
                 data={'msg': serlizerdData.errors},
                 status=status.HTTP_406_NOT_ACCEPTABLE
             )
+
 
 
 @api_view(['GET','POST'])
