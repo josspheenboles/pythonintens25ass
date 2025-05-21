@@ -1,0 +1,34 @@
+API protocols :
+	1-REST APIs(Representational State Transfer) best known:
+		architectural:
+			Client-server architecture:
+			The API interface remains on the client and is separated from the data kept on the server.
+			Statelessness: Each request made with the API is independent of all others and calls are made independently of one other.
+			Cacheable: A REST API response may be able to retrieve cached data, but you need to specify whether or not your responses can be cached.
+			Layered: The API works the same whether it interacts directly with the server or if there are other layers, like a load balancer or proxy service, between the client and the server.
+
+	2-SOAP(Simple Object Access Protocol):
+		communicate over TCP,SMTP,HTTP
+		more flexible than REST
+		SOAP is more restrictive.
+		SOAP only work with XML data
+		require more bandwidth than REST,
+		more complex
+		enables stateful requests
+		SOAP is a better fit for more sophisticated applications
+
+	3-RPC(Remote Procedure Call ):
+		response --->confirmation that the function was triggered,
+			     or
+			     an error indicating why it failed to run.
+		URI identifies only the server. no paramaer as restful
+	4-GraphQL:
+		isn’t really a separate protocol, it is a distinct query language,
+		have a single endpoint,
+		extensive custom documentation
+
+--------------install
+pip install djangorestframework
+-------------configure restframework
+in settings.py--->installed apps
+rest_framework

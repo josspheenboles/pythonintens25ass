@@ -1,6 +1,8 @@
-from django.urls import path
+from django.urls import path,include
 from .views import *
+
 urlpatterns=[
+
     path('',book_list,name='Blist'),
     path('ListClass',book_list_class.as_view(),name='Blistc'),
     path('ListClassG',Book_list_classG.as_view(),name='BlistcG'),
