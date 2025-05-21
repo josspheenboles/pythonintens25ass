@@ -11,6 +11,7 @@ from rest_framework.pagination import  PageNumberPagination
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet,ViewSet
 from rest_framework.permissions import IsAuthenticated,IsAdminUser,IsAuthenticatedOrReadOnly
+from rest_framework.decorators import permission_classes
 
 class BookViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -136,7 +137,7 @@ class BookClass(APIView):
             )
 
 
-
+@permission_classes(['IsAuthenticatedOrReadOnly'])
 @api_view(['GET','POST'])
 def getall(request):
     if request.method == 'GET':
