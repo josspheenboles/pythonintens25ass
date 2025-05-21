@@ -27,8 +27,138 @@ API protocols :
 		have a single endpoint,
 		extensive custom documentation
 
---------------install
+
+---install django rest framework
 pip install djangorestframework
--------------configure restframework
-in settings.py--->installed apps
-rest_framework
+--configure
+add to INSTALLED_APPS
+['rest_framework']
+--condigure default permission
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+------------Built-in Permission Classes-------
+    --AllowAny:Public APIs where anyone can read/write
+    --IsAuthenticated:APIs that require login
+    --IsAdminUser:Admin-only endpoints
+    --IsAuthenticatedOrReadOnly:   Public read access, authenticated write access
+    --DjangoModelPermissionsOrAnonReadOnly:Public read, authenticated write with specific permissions
+    --DjangoObjectPermissions:Fine-grained per-object access control
+    --Custom Permissions:create custom permission classes by subclassing BasePermission:
+        def has_object_permission(self, request, view, obj):
+-------------Setting Permissions----------------
+    --Global Settings (in settings.py)
+        REST_FRAMEWORK = {
+            'DEFAULT_PERMISSION_CLASSES': [
+                'rest_framework.permissions.IsAuthenticated',
+            ]
+        }
+     --View-Level Settings
+        permission_classes = [IsAuthenticated]
+     --Function-Based Views
+        from rest_framework.decorators import api_view, permission_classes
+        from rest_framework.permissions import IsAuthenticated
+        @api_view(['GET'])
+        @permission_classes([IsAuthenticated])
+    --Combining Permissions
+        permission_classes = [IsAuthenticated & DjangoModelPermissions]
+--------------Serializer----------------
+    handle the conversion between complex data types (like Django models) and Python native datatypes that can be easily rendered into JSON, XML, or other content types. Here's a comprehensive guide to DRF serializers:
+    ---Serializer Types
+        --Serializer (Base class)
+            from rest_framework import serializers
+            class BookSerializer(serializers.Serializer):
+                title = serializers.CharField(max_length=200)
+                author = serializers.CharField(max_length=100)
+                published_date = serializers.DateField()
+                isbn = serializers.CharField(max_length=13)
+        --ModelSerializer (Most common)
+        from rest_framework import serializers
+        from .models import Book
+
+        class BookSerializer(serializers.ModelSerializer):
+            class Meta:
+                model = Book
+                fields = '__all__'  # Or specify fields: ['id', 'title', 'author']
+        --HyperlinkedModelSerializer
+            class BookSerializer(serializers.HyperlinkedModelSerializer):
+            class Meta:
+                model = Book
+                fields = ['url', 'title', 'author']  # Includes hyperlinks
+                extra_kwargs = {
+                    'url': {'view_name': 'book-detail', 'lookup_field': 'pk'}
+                }
+    --Common Field Types
+        CharField	Text field
+        IntegerField	Integer field
+        BooleanField	True/False
+        DateTimeField	Date/time
+        EmailField	Email validation
+        URLField	URL validation
+        SlugField	Slug validation
+        DecimalField	Decimal numbers
+        FileField/ImageField	File uploads
+        ListField	List of items
+        DictField	Dictionary field
+    --Serializer Methods
+        --Custom Validation
+            def validate_title(self, value):
+        --Custom Fields
+            def get_days_since_published(self, obj):
+        --Nested Serializers
+            class BookSerializer(serializers.ModelSerializer):
+            author = AuthorSerializer()  # Nested serializer
+----------APIView---------------------
+    class ProductDetailAPIView(APIView):
+        def get(self, request, pk, format=None):
+            # Handle GET request
+            pass
+
+        def put(self, request, pk, format=None):
+            # Handle PUT request
+            pass
+
+        def patch(self, request, pk, format=None):
+            # Handle PATCH request
+            pass
+
+        def delete(self, request, pk, format=None):
+            # Handle DELETE request
+            pass
+----All Generic View Classes----------
+CreateAPIView	Create-only endpoint	POST
+ListAPIView	Read-only list endpoint	GET
+RetrieveAPIView	Read-only detail endpoint	GET
+DestroyAPIView	Delete-only endpoint	DELETE
+UpdateAPIView	Update-only endpoint	PUT, PATCH
+ListCreateAPIView	List and create	GET, POST
+RetrieveUpdateAPIView	Detail and update	GET, PUT, PATCH
+RetrieveDestroyAPIView	Detail and delete	GET, DELETE
+RetrieveUpdateDestroyAPIView	Full CRUD on single item	GET, PUT, PATCH, DELETE
+
+-------------DefaultRouter------------
+Root View:	Yes (API root endpoint)
+Format Suffixes:	Yes (.json, .api)
+-----------SimpleRouter-----
+Root View:	no
+Format Suffixes:no
+-----------simplejwt--------
+pip install djangorestframework-simplejwt
+----curl----
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_username", "password": "your_password"}' \
+  http://localhost:8000/api/token/
+
+  curl \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
+  http://localhost:8000/api/protected/
+  --Refreshing Tokens
+  curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}' \
+  http://localhost:8000/api/token/refresh/
