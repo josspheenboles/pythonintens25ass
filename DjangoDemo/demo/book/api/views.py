@@ -10,8 +10,10 @@ from rest_framework.generics import CreateAPIView,RetrieveUpdateDestroyAPIView,L
 from rest_framework.pagination import  PageNumberPagination
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet,ViewSet
+from rest_framework.permissions import IsAuthenticated,IsAdminUser,IsAuthenticatedOrReadOnly
 
 class BookViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Book2.objects.all().select_related('catagory')
     serializer_class = BookSerlizer
 
