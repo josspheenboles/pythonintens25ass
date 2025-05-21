@@ -23,6 +23,17 @@ class BookClass2(APIView):
                 {"error": str(e)},
                 status=status.HTTP_400_BAD_REQUEST
             )
+    def put(self,request,id):
+        try:
+            book = get_object_or_404(Book2, pk=id)
+            BookSerlizer().update(instance=book,validated_data=request.data)
+            return Response(data={'msg','book updated'},
+                            status=status.HTTP_202_ACCEPTED)
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
     def delete(self,request, id):
         try:
