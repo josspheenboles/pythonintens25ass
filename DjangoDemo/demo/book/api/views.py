@@ -12,7 +12,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet,ViewSet
 
 class BookViewSet(ModelViewSet):
-    queryset = Book2.objects.all().select_related('category')
+    queryset = Book2.objects.all().select_related('catagory')
     serializer_class = BookSerlizer
 
 
