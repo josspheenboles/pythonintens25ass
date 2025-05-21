@@ -5,6 +5,7 @@ urlpatterns=[
     #api function based
     path('API/',getall,name='apiall'),
     path('API/<int:id>',getbyid,name='getbyid'),
+    path('API/New/',createBook,name='createBook'),
 
 
 
