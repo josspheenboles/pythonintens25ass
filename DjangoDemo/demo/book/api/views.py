@@ -16,8 +16,28 @@ class BookClass2(APIView):
             data=BookSerlized.data,
             status=status.HTTP_200_OK
         )
+    def delete(self,request, id):
+        try:
+            book = get_object_or_404(Book2, pk=id)
+            book.delete()
+            return Response(
+                {"message": "Book deleted successfully"},
+                status=status.HTTP_204_NO_CONTENT
+            )
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
 class BookClass(APIView):
+    def get(self,request):
+        books = Book2.getall()
+        books_serlized = BookSerlizer(books, many=True)
+        return Response(
+            data=books_serlized.data,
+            status=status.HTTP_200_OK
+        )
     def get(self,request):
         books = Book2.getall()
         books_serlized = BookSerlizer(books, many=True)
