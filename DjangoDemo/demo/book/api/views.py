@@ -9,6 +9,12 @@ from rest_framework.views import  APIView
 from rest_framework.generics import CreateAPIView,RetrieveUpdateDestroyAPIView,ListAPIView
 from rest_framework.pagination import  PageNumberPagination
 from rest_framework.exceptions import ValidationError
+from rest_framework.viewsets import ModelViewSet,ViewSet
+
+class BookViewSet(ModelViewSet):
+    queryset = Book2.objects.all().select_related('category')
+    serializer_class = BookSerlizer
+
 
 class BookRUDAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Book2.getall()
