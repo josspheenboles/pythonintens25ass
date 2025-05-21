@@ -10,12 +10,20 @@ from rest_framework.views import  APIView
 
 class BookClass2(APIView):
     def get(self,request, id):
-        book = Book2.get_by_id(id)
-        BookSerlized = BookSerlizer(book)
-        return Response(
-            data=BookSerlized.data,
-            status=status.HTTP_200_OK
-        )
+        try:
+            book = get_object_or_404(Book2, pk=id)
+
+            BookSerlized = BookSerlizer(book)
+            return Response(
+                data=BookSerlized.data,
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
     def delete(self,request, id):
         try:
             book = get_object_or_404(Book2, pk=id)
