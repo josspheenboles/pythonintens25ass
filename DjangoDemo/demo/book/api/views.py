@@ -7,7 +7,7 @@ from .serlizer import *
 from ..models import *
 from rest_framework.views import  APIView
 
-
+#get by id,put,patch,delete
 class BookClass2(APIView):
     def get(self,request, id):
         try:
@@ -49,6 +49,7 @@ class BookClass2(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+#get,post
 class BookClass(APIView):
     def get(self,request):
         books = Book2.getall()
@@ -143,5 +144,4 @@ def getbyid(request,id):
             )
 
 
-# @api_view(['POST'])
-# def createBook(request):
+
