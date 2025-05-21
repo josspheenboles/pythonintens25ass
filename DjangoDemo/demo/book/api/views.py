@@ -6,6 +6,18 @@ from django.shortcuts import get_object_or_404
 from .serlizer import *
 from ..models import *
 from rest_framework.views import  APIView
+from rest_framework.generics import CreateAPIView,RetrieveUpdateDestroyAPIView,ListAPIView
+from rest_framework.pagination import  PageNumberPagination
+
+class BookPagination(PageNumberPagination):
+    page_size = 10
+    page_query_param = 'page_size'
+    max_page_size = 100
+
+class BookList(ListAPIView):
+    serializer_class = BookSerlizer
+    queryset = Book2.getall()
+    pagination_class =BookPagination
 
 #get by id,put,patch,delete
 class BookClass2(APIView):

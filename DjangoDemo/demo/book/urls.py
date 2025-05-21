@@ -8,6 +8,9 @@ urlpatterns=[
     # class Based
     path('CAPI/',BookClass.as_view(),name='BookClass'),
     path('CAPI/<int:id>',BookClass2.as_view(),name='BookClassbyid'),
+    # generic class Based
+    path('GAPI/',BookList.as_view()),
+
 
 
 
