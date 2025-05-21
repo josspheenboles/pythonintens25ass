@@ -9,6 +9,13 @@ from rest_framework.views import  APIView
 from rest_framework.generics import CreateAPIView,RetrieveUpdateDestroyAPIView,ListAPIView
 from rest_framework.pagination import  PageNumberPagination
 
+
+
+class BookCreateAPIView(CreateAPIView):
+        queryset = Book2.getall()
+        serializer_class = BookSerlizer
+        # model=Book2
+
 class BookPagination(PageNumberPagination):
     page_size = 10
     page_query_param = 'page_size'

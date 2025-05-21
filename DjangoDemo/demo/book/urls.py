@@ -10,6 +10,7 @@ urlpatterns=[
     path('CAPI/<int:id>',BookClass2.as_view(),name='BookClassbyid'),
     # generic class Based
     path('GAPI/',BookList.as_view()),
+    path('GAPI/New/',BookCreateAPIView.as_view()),
 
 
 
