@@ -25,3 +25,21 @@ class BookSerlizer(serializers.Serializer):
             raise serializers.ValidationError("Category does not exist")
 
         return Book2.objects.create(catagory=catagory, **validated_data)
+
+    def update(self, instance, validated_data):
+        if 'category_id' in validated_data:
+            category_id = validated_data.pop('category_id')[0]
+
+            try:
+                category = Catagory2.objects.get(id=category_id)
+                instance.category = category
+            except Catagory2.DoesNotExist:
+                raise serializers.ValidationError("Category does not exist")
+
+        # Update other fields
+        instance.name = validated_data.get('name', instance.name)
+        instance.publish_date = validated_data.get('publish_date', instance.publish_date)
+        instance.image = validated_data.get('image', instance.image)
+        instance.status = validated_data.get('status', instance.status)
+        instance.save()
+        return instance

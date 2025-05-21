@@ -32,7 +32,7 @@ def getall(request):
 
 
 
-@api_view(['GET','DELETE'])
+@api_view(['GET','DELETE','PUT'])
 def getbyid(request,id):
     if request.method=='GET':
         book=Book2.get_by_id(id)
@@ -54,7 +54,17 @@ def getbyid(request,id):
                 {"error": str(e)},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
+    elif request.method == 'PUT':
+        try:
+            book = get_object_or_404(Book2, pk=id)
+            BookSerlizer().update(instance=book,validated_data=request.data)
+            return Response(data={'msg','book updated'},
+                            status=status.HTTP_202_ACCEPTED)
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
 
 # @api_view(['POST'])
