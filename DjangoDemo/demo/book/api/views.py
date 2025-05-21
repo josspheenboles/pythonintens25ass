@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 from .serlizer import *
 from ..models import *
@@ -31,15 +32,29 @@ def getall(request):
 
 
 
-@api_view(['GET'])
+@api_view(['GET','DELETE'])
 def getbyid(request,id):
-
+    if request.method=='GET':
         book=Book2.get_by_id(id)
         BookSerlized=BookSerlizer(book)
         return Response(
             data=BookSerlized.data,
             status=status.HTTP_200_OK
         )
+    elif request.method=='DELETE':
+        try:
+            book = get_object_or_404(Book2, pk=id)
+            book.delete()
+            return Response(
+                {"message": "Book deleted successfully"},
+                status=status.HTTP_204_NO_CONTENT
+            )
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
 
 
 # @api_view(['POST'])
