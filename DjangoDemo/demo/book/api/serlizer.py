@@ -18,3 +18,4 @@ class BookSerlizer(serializers.Serializer):
         source='Catagory2',
         write_only=True
     )
+    read_only_fields=['id','update_date']
