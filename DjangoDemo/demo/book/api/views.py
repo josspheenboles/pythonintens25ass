@@ -23,3 +23,20 @@ def getbyid(request,id):
         data=BookSerlized.data,
         status=status.HTTP_200_OK
     )
+
+@api_view(['POST'])
+def createBook(request):
+        #deserlize data
+        serlizerdData=BookSerlizer(data=request.data)
+        if serlizerdData.is_valid():
+            serlizerdData.save()
+            return Response(
+                data={'msg':f'book created '+str(serlizerdData.data['id'])},
+                status=status.HTTP_201_CREATED
+            )
+        else:
+            return Response(
+                data={'msg':serlizerdData.errors},
+                status=status.HTTP_406_NOT_ACCEPTABLE
+            )
+
