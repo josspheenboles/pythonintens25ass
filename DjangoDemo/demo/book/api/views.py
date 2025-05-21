@@ -5,6 +5,32 @@ from django.shortcuts import get_object_or_404
 
 from .serlizer import *
 from ..models import *
+from rest_framework.views import  APIView
+
+class BookClass(APIView):
+    def get(self,request):
+        books = Book2.getall()
+        books_serlized = BookSerlizer(books, many=True)
+        return Response(
+            data=books_serlized.data,
+            status=status.HTTP_200_OK
+        )
+
+    def post(self,request):
+        # deserlize data
+        serlizerdData = BookSerlizer(data=request.data)
+        if serlizerdData.is_valid():
+            serlizerdData.save()
+            return Response(
+                data={'msg': f'book created ' + str(serlizerdData.data['id'])},
+                status=status.HTTP_201_CREATED
+            )
+        else:
+            return Response(
+                data={'msg': serlizerdData.errors},
+                status=status.HTTP_406_NOT_ACCEPTABLE
+            )
+
 
 @api_view(['GET','POST'])
 def getall(request):

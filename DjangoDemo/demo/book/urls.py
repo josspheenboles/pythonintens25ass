@@ -5,7 +5,8 @@ urlpatterns=[
     #api function based
     path('API/',getall,name='apiall'),
     path('API/<int:id>',getbyid,name='getbyid'),
-    # path('API/New',createBook,name='createBook'),
+    # class Based
+    path('CAPI/',BookClass.as_view(),name='BookClass'),
 
 
 
