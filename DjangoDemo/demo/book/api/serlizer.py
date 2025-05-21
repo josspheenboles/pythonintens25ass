@@ -7,9 +7,14 @@ class CatagorySerlizer(serializers.ModelSerializer):
         fields='__all__'
 
 class BookSerlizer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
+    id = serializers.IntegerField()
     name =serializers.CharField(max_length=100, null=False)
     publish_date = serializers.DateField()
     update_date = serializers.DateField(auto_now=True)
     image = serializers.ImageField(upload_to='books/imgs', blank=True, null=True)
     status = serializers.BooleanField(default=True)
+    catagory = serializers.PrimaryKeyRelatedField(
+        queryset=Catagory2.getall(),
+        source='Catagory2',
+        write_only=True
+    )
