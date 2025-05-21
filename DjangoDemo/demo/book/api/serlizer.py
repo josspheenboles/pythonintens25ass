@@ -8,10 +8,10 @@ class CatagorySerlizer(serializers.ModelSerializer):
 
 class BookSerlizer(serializers.Serializer):
     id = serializers.IntegerField()
-    name =serializers.CharField(max_length=100, null=False)
+    name =serializers.CharField(max_length=100)
     publish_date = serializers.DateField()
-    update_date = serializers.DateField(auto_now=True)
-    image = serializers.ImageField(upload_to='books/imgs', blank=True, null=True)
+    update_date = serializers.DateField()
+    image = serializers.ImageField()
     status = serializers.BooleanField(default=True)
     catagory = serializers.PrimaryKeyRelatedField(
         queryset=Catagory2.getall(),

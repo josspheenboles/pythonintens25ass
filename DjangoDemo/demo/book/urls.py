@@ -1,7 +1,11 @@
 from django.urls import path,include
 from .views import *
-
+from .api.views import *
 urlpatterns=[
+    #api function based
+    path('API/',getall,name='apiall'),
+
+
 
     path('',book_list,name='Blist'),
     path('ListClass',book_list_class.as_view(),name='Blistc'),
