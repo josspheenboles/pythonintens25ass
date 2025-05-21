@@ -2,6 +2,11 @@ from django.urls import path,include
 from .views import *
 from .api.views import *
 from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'books', BookViewSet, basename='book')
+
+
 urlpatterns=[
     #api function based
     path('API/',getall,name='apiall'),
