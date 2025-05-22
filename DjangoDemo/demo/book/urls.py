@@ -18,7 +18,6 @@ urlpatterns=[
     path('GAPI/',BookList.as_view()),
     path('GAPI/New/',BookCreateAPIView.as_view()),
     path('GAPI/RUD/<int:pk>',BookRUDAPIView.as_view()),
-
     #view set
     path('viewset/', include(router.urls)),
 
