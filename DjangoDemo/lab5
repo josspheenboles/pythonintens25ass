@@ -1,0 +1,4 @@
+add & list product endpoint using function based view
+update product using class based
+update,getbyid,delete product using generic
+product crud using View Set
